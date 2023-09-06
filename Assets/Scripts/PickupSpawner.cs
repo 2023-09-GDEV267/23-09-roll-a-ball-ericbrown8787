@@ -10,11 +10,14 @@ public class PickupSpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GameObject newPickUp;
         for (int i = 0; i < quantity; i+=1)
         {
+
             float angle = i * Mathf.PI * 2f / quantity;
             Vector3 newPos = new Vector3(Mathf.Cos(angle) * circleRadius, .5f, Mathf.Sin(angle) * circleRadius);
-            Instantiate(pickUp, newPos, Quaternion.identity);
+            newPickUp = Instantiate(pickUp, newPos, Quaternion.identity);
+            newPickUp.transform.parent = this.transform;
         }
     }
 }
