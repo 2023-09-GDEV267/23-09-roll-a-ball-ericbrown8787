@@ -4,6 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using TMPro;
+using System;
 
 public class PlayerController : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class PlayerController : MonoBehaviour
     private int count;
     private float movementX;
     private float movementY;
+
 
     // Start is called before the first frame update
     void Start()
@@ -30,6 +32,11 @@ public class PlayerController : MonoBehaviour
         Vector2 movementVector = movementValue.Get<Vector2>();
         movementX = movementVector.x;
         movementY = movementVector.y;
+    }
+    
+    void OnBoost()
+    {
+       rb.AddForce(new Vector3(movementX, 0f, movementY) * 4f, ForceMode.Impulse);
     }
 
     void SetCountText()
@@ -55,7 +62,6 @@ public class PlayerController : MonoBehaviour
             count += 1;
 
             SetCountText();
-        }
-        
+        } 
     }
 }
