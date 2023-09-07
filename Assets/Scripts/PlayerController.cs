@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     private int count;
     private float movementX;
     private float movementY;
+    public PickupSpawner pickupSpawner;
 
 
     // Start is called before the first frame update
@@ -42,7 +43,8 @@ public class PlayerController : MonoBehaviour
     void SetCountText()
     {
         countText.text = $"Count: {count}";
-        if (count >= 12) 
+        // Check quantity of pickups spawned using public method of pickupSpawner
+        if (count >= pickupSpawner.GetActualQuantity())
         {
             winTextObject.SetActive(true);
         }
